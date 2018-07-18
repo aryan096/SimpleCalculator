@@ -1,2 +1,5 @@
+#ignores the virtual environment files
 env
+
+#ignores __pycache__
 __pycache__
