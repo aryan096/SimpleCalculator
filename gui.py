@@ -8,7 +8,6 @@ addition function from operations module
 '''
 
 import tkinter as tk
-from operations import addition
 
 #CalcLayout class to make GUI
 class CalcLayout(tk.Frame):
@@ -39,32 +38,31 @@ class CalcLayout(tk.Frame):
         self.entry2.grid(row=0, column=1)
 
         #Operation Buttons
-        self.add_button = tk.Button(self, width=10, text="+", bg ="grey", command= self.set_output_addition)
+        self.add_button = tk.Button(self, width=10, text="+", bg ="grey", command= lambda: self.set_output(type='+'))
         self.add_button.grid(row=3, column=0)
-        self.subtract_button = tk.Button(self, width=10, text="-", bg="grey", command= self.set_output_subtraction)
+        self.subtract_button = tk.Button(self, width=10, text="-", bg="grey", command= lambda: self.set_output(type='-'))
         self.subtract_button.grid(row=3,column=1)
-        self.mult_button = tk.Button(self, width=10, text="*", bg ="grey", command= self.set_output_multiplication)
+        self.mult_button = tk.Button(self, width=10, text="*", bg ="grey", command= lambda: self.set_output(type='*'))
         self.mult_button.grid(row=4, column=0)
-        self.divide_button = tk.Button(self, width=10, text="/", bg="grey", command = self.set_output_division)
+        self.divide_button = tk.Button(self, width=10, text="/", bg="grey", command= lambda: self.set_output(type='/'))
         self.divide_button.grid(row=4, column=1)
 
         self.output = tk.Message(self, width=100, textvariable=self.outputNum)
         self.output.grid(row=2, columnspan=2)
         self.outputNum.set("INITIAL")
 
-    '''
-    setOutput places the output message after calculating it using functions in operations module
 
-    '''
-    def set_output_addition(self):
-        self.outputNum.set(int(self.entry1.get())+int(self.entry2.get()))
-        self.master.update_idletasks()
-    def set_output_subtraction(self):
-        self.outputNum.set(int(self.entry1.get())-int(self.entry2.get()))
-        self.master.update_idletasks()
-    def set_output_multiplication(self):
-        self.outputNum.set(int(self.entry1.get())*int(self.entry2.get()))
-        self.master.update_idletasks()
-    def set_output_division(self):
-        self.outputNum.set(int(self.entry1.get())/int(self.entry2.get()))
-        self.master.update_idletasks()
+    def set_output(self, type):
+
+        if(type=='+'):
+            self.outputNum.set(int(self.entry1.get())+int(self.entry2.get()))
+            self.master.update_idletasks()
+        elif(type=='-'):
+            self.outputNum.set(int(self.entry1.get())-int(self.entry2.get()))
+            self.master.update_idletasks()
+        elif(type=='*'):
+            self.outputNum.set(int(self.entry1.get())*int(self.entry2.get()))
+            self.master.update_idletasks()
+        elif(type=='/'):
+            self.outputNum.set(int(self.entry1.get())/int(self.entry2.get()))
+            self.master.update_idletasks()
